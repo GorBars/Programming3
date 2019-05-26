@@ -123,6 +123,10 @@ function freeze() {
     socket.emit("freeze")
 }
 
+function adrenaline(){
+    socket.emit("boost")
+}
+
 
 
 

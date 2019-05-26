@@ -23,6 +23,7 @@ matrix = [
 ];
 
 // Server start
+var fs = require('fs');
 var express = require('express');
 var app = express();
 var server = require('http').Server(app);
@@ -32,10 +33,12 @@ app.get('/', function (req, res) {
     res.redirect('index1.html');
 });
 
-var fs = require('fs');
 
 
-server.listen(3000);
+
+server.listen(5000, () =>{
+    console.log("RUN");
+});
 //
 
 
@@ -100,10 +103,10 @@ function game() {
         wolfArr[i].eat();
     }}
 
-
+    if (bombArr[0] != undefined){
     for (var i in bombArr) {
         bombArr[i].boom();
-    }
+    }}
     var data = {
         matrix: matrix,
         season: weather,
@@ -115,17 +118,6 @@ function game() {
     io.sockets.emit("ugharkum em matrix", data)
 
 
-}
-
-if (n == 2) {
-    setInterval(game ,3000)
-    console.log('slow speed')
-}else if(n == 3){
-    setInterval(game,500)
-    console.log('fast speed')
-}else{
-     setInterval(game,1000)
-    console.log('normal speed')   
 }
 
 
@@ -150,6 +142,7 @@ function autumn() {
 // Aciton Functions
 
 function flame(){
+    
     n = 1;
 
 
@@ -160,7 +153,8 @@ setTimeout(function(){
         for(var y = 0; y < matrix.length; y++){
           for(var x = 0; x < matrix[y].length; x++){
              if (matrix[y][x] == 1) {
-               b = matrix[y][x] = 0;
+               matrix[y][x] = 0;
+               b = matrix[y][x];
              }
 
          }
@@ -169,26 +163,24 @@ setTimeout(function(){
  
 },1000);
 
-n = 0;
+n = 2;
 
 }
+function freeze(){n = 2;}
+function boost(){n = 3;}
 
 
-function freeze(){
-    n = 2;    
 
-}
-
-
-function adrenaline(){
-    n = 3;
-
-
-}
-
-//
-
-
+if (n == 2) {
+    setInterval(game ,3000)
+    console.log('slow speed')
+}else if(n == 3){
+    setInterval(game,500)
+    console.log('fast speed')
+}else{
+     setInterval(game,1000)
+    console.log('normal speed')   
+} 
 // weather
 
 io.on('connection', function (socket) {
@@ -217,7 +209,7 @@ io.on('connection', function (socket) {
 });
 
 io.on('connection', function (socket) {
-    socket.on("adrenaline", adrenaline)
+    socket.on("boost", boost)
 });
 
 // 
