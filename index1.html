@@ -5,17 +5,14 @@
     <style>
         #legend {position: absolute;top: 0;right: 0;width: 800px; margin-right: 530px;} .legend-color {width: 30px;height: 30px;} td {border: 1px solid black; font-size: 14px; padding-left: 5px;}
     </style>
+    <script src="/socket.io/socket.io.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.js"></script>
 	<script src="script1.js"></script>
-	<script src="grass.js"></script>
-    <script src="eatgrass.js"></script>
-    <script src="nighteat.js"></script>
-    <script src="wolf.js"></script>
-    <script src="bomb.js"></script>
+
 </head>
 
 <body>
-    <table id="legend"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <table id="legend" style="float: right;"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <tr>
             <td class="legend-color">Գույն</td>
             <td>Անվանում</td>
@@ -27,7 +24,7 @@
         </tr>
 
         <tr>
-            <td class="legend-color" style="background-color:gray"></td>
+            <td class="legend-color" style="background-color:#3F2A15"></td>
             <td>Դատարկ վանդակներ</td>
             <td></td>
             <td></td>
@@ -81,6 +78,66 @@
            	<td>Ամբողջ դաշտով</td>
         </tr>
     </table>
+
+    <table>
+        <tr>
+            <td>Գույն</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Կերպարների փոփոխություններ</td>
+            <td>Ամառ</td>
+            <td>Ձմեռ</td>
+            <td>Աշուն</td>
+        </tr>
+        <tr>
+            <td>Գայլ</td>
+            <td style="background-color: #2B2B2B;"></td>
+            <td style="background-color: #6289A3;"></td>
+            <td style="background-color: #D09D6A;"></td>
+        </tr>   
+        <tr>
+            <td>Խոտ</td>
+            <td style="background-color: green;"></td>
+            <td style="background-color: white;"></td>
+            <td style="background-color: orange;"></td>
+        </tr>
+    </table><br><br>
+
+    <table>
+        <tr>
+            <td>Իրադարձության անվանում</td>
+            <td>Կատարելագործություն</td>
+
+        </tr>
+        <tr>
+            <td>Flame</td>
+            <td>Առաջացնում է կարմիր կրակ խոտերի վրա վառում է այն 2 վարկյան և խոտը անհետանում և նորից աճում է</td>
+
+        </tr>
+        <tr>
+            <td>Freeze</td>
+            <td>Կոճակը սեղմելուց բոլոր կերպարները դաշտում քարանում են 3 վարկյանով և նորից սկսում են շարժվել</td>
+        </tr>   
+    </table>
+   
+ <div class="weather" style="float:right; margin-bottom:100px;">
+    <h4>Weather</h4>
+    <button onclick="winter()">Winter</button>
+    <button onclick="summer()">Summer</button>
+    <button onclick="autumn()">Autumn</button>
+</div>
+
+<div class="actions">
+    <h4>Actions</h4>
+    <button onclick="fire()">Flame</button>
+    <button onclick="freeze()">Freeze</button>
+</div>
+
+
+
 </body>
 
 </html>
